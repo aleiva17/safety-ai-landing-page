@@ -1,39 +1,22 @@
-import { Link, NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
+import NavBar from "../components/NavBar"
 
-const Header = (): JSX.Element => {
-  const activeStyle = "border-b-2 border-yellow-400"
+interface IHeader {
+  showModal: React.Dispatch<React.SetStateAction<boolean>>
+}
 
+const Header = ({ showModal }: IHeader): JSX.Element => {
   return (
-    <header className="flex justify-around bg-soft-white">
+    <header className="flex items-center justify-between md:justify-around bg-soft-white px-8 md:px-0">
       <Link to="/">
-        <img src="/logo.png" alt="Safety AI Logo" className="h-24" />
+        <img src="/logo.png" alt="Safety AI Logo" className="max-h-24 w-auto" />
       </Link>
-      <nav className="flex justify-center items-center font-bold gap-4">
-        <NavLink 
-          to="/" 
-          className={({ isActive }) => isActive ? activeStyle : undefined }
-        >
-          Inicio
-        </NavLink>
-        <NavLink 
-          to="/nosotros" 
-          className={({ isActive }) => isActive ? activeStyle : undefined }
-        >
-          Nosotros
-        </NavLink>
-        <NavLink 
-          to="/servicios"
-          className={({ isActive }) => isActive ? activeStyle : undefined }
-        >
-          Servicios
-        </NavLink>
-        <NavLink 
-          to="/contacto"
-          className={({ isActive }) => isActive ? activeStyle : undefined }
-        >
-          Contacto
-        </NavLink>
+      <nav className="hidden md:flex justify-center items-center font-bold gap-4">
+        <NavBar onLinkClick={ () => showModal(false) } isMobile={ false } />
       </nav>
+      <svg onClick={ () => showModal(true) } xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="md:hidden left-0 w-8 h-8">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
     </header>
   )
 }

@@ -1,43 +1,21 @@
 import Header from "./layout/Header"
-import Home from "./pages/Home"
-import Us from "./pages/Us"
-import Contact from "./pages/Contact"
-import Services from "./pages/Services"
-import SafetyCarValidatorService from "./pages/SafetyCarValidatorService"
+import Main from "./layout/Main"
 import Footer from "./layout/Footer"
-import { Routes, Route } from "react-router-dom"
-import NotFound404 from "./pages/NotFound404"
+
+import Modal from "./components/Modal"
+import NavBar from "./components/NavBar"
+import { useState } from "react"
 
 const App = (): JSX.Element => {
+  const [showModal, setShowModal] = useState(false) 
+
   return (
     <div className="min-h-screen grid grid-cols-1 grid-rows-[auto_1fr_auto]">
-      <Header />
-      <Routes>
-        <Route 
-          path="/"
-          element={ <Home /> }
-        />
-        <Route 
-          path="/nosotros"
-          element={ <Us /> }
-        />
-        <Route 
-          path="/contacto"
-          element={ <Contact /> }
-        />
-        <Route
-          path="/servicios"
-          element={ <Services /> }
-        />
-        <Route
-          path="/servicios/safety-car-validator"
-          element={ <SafetyCarValidatorService /> }
-        />
-        <Route
-          path="/*"
-          element={ <NotFound404 /> }
-        />
-      </Routes>
+      <Header showModal= { setShowModal } />
+      <Modal state={ showModal } setState={ setShowModal }>
+        <NavBar onLinkClick={ () => setShowModal(false) } isMobile={ true } />
+      </Modal>
+      <Main />
       <Footer />
     </div>
   )

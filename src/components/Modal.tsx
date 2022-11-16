@@ -5,13 +5,14 @@ interface IModal {
 }
 
 const Modal = ({ state, setState, children }: IModal): JSX.Element => {
-  const handleCloseBtn = () => {
-    document.body.style.overflow = ""
-    setState(false)
-  }
+  const handleCloseBtn = () => setState(false)
 
   if (state) {
     document.body.style.overflow = "hidden"
+  }
+
+  if (!state) {
+    document.body.style.overflow = ""
   }
   
   return (

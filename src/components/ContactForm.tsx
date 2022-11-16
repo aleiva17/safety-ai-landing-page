@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Notifier from "../services/Notifier"
 
 const ContactForm = (): JSX.Element => {
   const [name, setName] = useState("")
@@ -10,6 +11,24 @@ const ContactForm = (): JSX.Element => {
   const handleOnChangePhoneInput = (newNumber: string): void => setPhone(newNumber)
   const handleOnChangeEmailInput = (newEmail: string): void => setEmail(newEmail)
   const handleOnChangeMessageInput = (newMessage: string): void => setMessage(newMessage)
+
+  const handleSubmitBtn = () => {
+    if (name.length === 0 || phone.length === 0 || email.length === 0 || message.length === 0) {
+      Notifier.missingData()
+      return
+    }
+
+    if (!email.includes("@") || !email.includes(".")) {
+      Notifier.wrongEmail()
+      return
+    }
+
+    Notifier.messageSent()
+    setName("")
+    setPhone("")
+    setEmail("")
+    setMessage("")
+  }
 
   return (
     <form className="bg-[#1a202c] flex flex-col max-w-full px-9 md:px-10 pt-10 rounded-3xl gap-4">
@@ -30,7 +49,12 @@ const ContactForm = (): JSX.Element => {
         <textarea required autoComplete="off" onChange={ (event) => handleOnChangeMessageInput(event.target.value) } className="rounded-xl py-2 px-2 w-full" name="message" rows={4} value={ message }></textarea>
       </div>
       <div className="flex justify-center items-center mb-4">
-        <button className="bg-yellow-500 hover:bg-yellow-400 rounded-xl font-semibold px-4 py-2">Enviar</button>
+        <button 
+          onClick={ handleSubmitBtn }
+          className="bg-yellow-500 hover:bg-yellow-400 rounded-xl font-semibold px-4 py-2"
+        >
+          Enviar
+        </button>
       </div>
     </form>   
   )

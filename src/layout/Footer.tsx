@@ -3,13 +3,21 @@ import instagramIcon from "../assets/instagram-icon.svg"
 import youtubeIcon from "../assets/youtube-icon.svg"
 import linkedIn from "../assets/linkedin-icon.svg"
 import { useState } from "react"
+import Notifier from "../services/Notifier"
 
 const Footer = (): JSX.Element => {
   const [email, setEmail] = useState("");
 
   const handleChangeEmailInput = (newEmail: string): void => setEmail(newEmail)
-  const handleSubscribeBtn = () => setEmail("")
-  
+  const handleSubscribeBtn = () => {
+    if (email.length === 0 || !email.includes("@") || !email.includes(".")) {
+      Notifier.wrongEmail()
+      return
+    }
+    Notifier.subscribedToNewsletter()
+    setEmail("")
+  }
+
   return (
     <footer className="flex justify-around flex-wrap items-center bg-secondary text-white py-4 gap-4">
       <div>

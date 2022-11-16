@@ -2,7 +2,7 @@
 const Us = ():JSX.Element => {
   return (
     <main className="flex flex-col justify-center items-center bg-primary py-4 px-8 gap-12">
-      <h1 className="text-white text-center max-w-[700px] text-6xl font-bold pb-8 border-b-2">Nosotros</h1>
+      <h1 className="text-white text-center max-w-[700px] text-3xl md:text-6xl font-bold pb-8 border-b-2">Nosotros</h1>
       <section className="grid grid-cols-1 md:grid-cols-2 w-full md:w-3/5 items-center gap-8 md:gap-0">
         <p className="text-white text-center text-xl">Safety AI es una startup que surgió en el año 2022 juntando el mejor talento en el área de inteligencia artificial para brindar soluciones de software a empresas que les gusten innovar con el fin de mejorar la calidad de vida de las personas.</p>
         <div className="flex justify-center w-full">

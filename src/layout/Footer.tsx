@@ -11,9 +11,9 @@ const Footer = (): JSX.Element => {
   const handleSubscribeBtn = () => setEmail("")
   
   return (
-    <footer className="flex justify-around items-center bg-secondary text-white py-4">
+    <footer className="flex justify-around flex-wrap items-center bg-secondary text-white py-4 gap-4">
       <div>
-        <p className="font-semibold mb-2">Social</p>
+        <p className="hidden md:flex font-semibold mb-2">Social</p>
         <div className="flex gap-4">
           <a href="https://www.facebook.com/safety-ai" target="_blank">
             <img className="h-8 w-8" src={ facebookIcon } alt="Facebook Icon" />
@@ -29,14 +29,15 @@ const Footer = (): JSX.Element => {
           </a>
         </div>
       </div>
-      <p className="font-semibold">2022 Copyright - Safety AI &copy;</p>
+      <p className="hidden md:flex font-semibold text-center">2022 Copyright - Safety AI &copy;</p>
       <div>
-        <p className="font-semibold mb-4">Suscríbete a nuestro newsletter:</p>
-        <div className="flex justify-center gap-2">
-          <input onChange={ (e) => handleChangeEmailInput(e.target.value) } value={ email } className="bg-tertiary placeholder:text-white rounded-full px-3 w-60" type="email" autoComplete="off" placeholder="Ingresa tu correo electrónico" />
+        <p className="font-semibold text-center md:text-left mb-4">Suscríbete a nuestro newsletter:</p>
+        <div className="flex flex-wrap justify-center gap-2">
+          <input onChange={ (e) => handleChangeEmailInput(e.target.value) } value={ email } className="bg-tertiary placeholder:text-white rounded-full px-3 py-1 w-60" type="email" autoComplete="off" placeholder="Ingresa tu correo electrónico" />
           <button onClick={ handleSubscribeBtn } className="bg-yellow-500 hover:bg-yellow-400 duration-300 rounded-lg py-1 px-2">Suscribirse</button>
         </div>
       </div>
+      <p className="md:hidden font-semibold text-center">2022 Copyright - Safety AI &copy;</p>
     </footer>
   )
 }

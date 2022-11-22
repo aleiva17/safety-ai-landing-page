@@ -31,22 +31,22 @@ const ContactForm = (): JSX.Element => {
   }
 
   return (
-    <form className="bg-[#1a202c] flex flex-col max-w-full px-9 md:px-10 pt-10 rounded-3xl gap-4">
+    <form onSubmit={ (e) => e.preventDefault() } className="bg-[#1a202c] flex flex-col max-w-full px-9 md:px-10 pt-10 rounded-3xl gap-4">
       <div className="flex flex-wrap md:flex-nowrap justify-between gap-4">
         <label className="text-white text-xl" htmlFor="nForm">Nombre</label>
-        <input required autoComplete="off" onChange={ (event) => handleOnChangeNameInput(event.target.value) } className="w-full md:w-72 max-w-72 rounded-full py-1 px-3" type="text" name="nForm" value={ name } />
+        <input autoComplete="off" onChange={ (event) => handleOnChangeNameInput(event.target.value) } className="w-full md:w-72 max-w-72 rounded-full py-1 px-3" type="text" name="nForm" value={ name } />
       </div>
       <div className="flex flex-wrap md:flex-nowrap justify-between gap-4">
         <label className="text-white text-xl" htmlFor="pForm">Celular</label>
-        <input required autoComplete="off" onChange={ (event) => handleOnChangePhoneInput(event.target.value) } className="w-full md:w-72 max-w-72 rounded-full py-1 px-3" type="number" name="pForm" value={ phone } />
+        <input autoComplete="off" onChange={ (event) => handleOnChangePhoneInput(event.target.value) } className="w-full md:w-72 max-w-72 rounded-full py-1 px-3" type="number" name="pForm" value={ phone } />
       </div>
       <div className="flex flex-wrap md:flex-nowrap justify-between gap-4">
         <label className="text-white text-xl" htmlFor="mForm">Correo</label>
-        <input required autoComplete="off" onChange={ (event) => handleOnChangeEmailInput(event.target.value) } className="w-full md:w-72 max-w-72 rounded-full py-1 px-3" type="email" name="mForm" value={ email } />
+        <input autoComplete="off" onChange={ (event) => handleOnChangeEmailInput(event.target.value) } className="w-full md:w-72 max-w-72 rounded-full py-1 px-3" type="email" name="mForm" value={ email } />
       </div>
       <div className="flex flex-wrap md:flex-nowrap flex-col justify-between gap-4">
         <label className="text-white text-xl" htmlFor="message">Mensaje</label>
-        <textarea required autoComplete="off" onChange={ (event) => handleOnChangeMessageInput(event.target.value) } className="rounded-xl py-2 px-2 w-full" name="message" rows={4} value={ message }></textarea>
+        <textarea autoComplete="off" onChange={ (event) => handleOnChangeMessageInput(event.target.value) } className="rounded-xl py-2 px-2 w-full" name="message" rows={4} value={ message }></textarea>
       </div>
       <div className="flex justify-center items-center mb-4">
         <button 
